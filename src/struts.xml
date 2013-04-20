@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="vocbook" extends="json-default" namespace="/">
+		<action name="showInfo" class="action.InfoAction" 
+			method="showInfo">
+			<result type="dispatcher">
+				WEB-INF/jsp/voc_info_v.jsp
+			</result>
+		</action>
+		<action name="getRecentTenWords" class="action.InfoAction" 
+			method="getRecentTenWords">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="getUserBand" class="action.InfoAction" 
+			method="getUserBand">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="getVocabulary" class="action.InfoAction" 
+			method="getVocabulary">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		
+		<action name="getUserExers" class="action.InfoAction" 
+			method="getUserExers">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		
+		<action name="getCountPages" class="action.InfoAction" 
+			method="getCountPages">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="getRandomExers" class="action.InfoAction" 
+			method="getRandomExers">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+		<action name="saveUserBand" class="action.InfoAction" 
+			method="saveUserBand">
+			<result type="json">
+				<param name="root">data</param>
+			</result>
+		</action>
+    </package>
+    
+</struts>

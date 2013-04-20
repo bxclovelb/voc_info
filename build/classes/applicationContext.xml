@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:tx="http://www.springframework.org/schema/tx"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	
+	<bean id="dataSourceVocabulary" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+	  	</property>
+	  	<property name="url" value="jdbc:mysql://localhost:3306/genway_vocabulary?characterEncoding=utf-8">
+	  	</property>
+	  	<property name="username" value="bingoenglish">
+	  	</property>
+	  	<property name="password" value="bingoenglish">
+	  	</property>
+	</bean>
+	<bean id="sessionFactoryVocabulary" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceVocabulary"></property>
+		<property name="mappingResources">
+			<list>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="vocabularyInfoDao" class="dao.impl.VocabularyInfoDaoImpl">
+		<property name="sessionFactoryVocabulary" ref="sessionFactoryVocabulary"></property>
+	</bean>
+	
+	<bean id="dataSourceW" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+	  	</property>
+	  	<property name="url" value="jdbc:mysql://localhost:3306/genway_w?characterEncoding=utf-8">
+	  	</property>
+	  	<property name="username" value="bingoenglish">
+	  	</property>
+	  	<property name="password" value="bingoenglish">
+	  	</property>
+	</bean>
+	<bean id="sessionFactoryW" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceW"></property>
+		<property name="mappingResources">
+			<list>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="wInfoDao" class="dao.impl.WInfoDaoImpl">
+		<property name="sessionFactoryW" ref="sessionFactoryW"></property>
+	</bean>
+	
+	
+	<bean id="infoService" class="service.InfoService">
+		<property name="vocabularyInfoDao" ref="vocabularyInfoDao"></property>
+		<property name="wInfoDao" ref="wInfoDao"></property>
+	</bean>
+	
+	<bean id="infoAction" class="action.InfoAction">
+		<property name="infoService" ref="infoService"></property>
+	</bean> 
+	
+	
+</beans>
