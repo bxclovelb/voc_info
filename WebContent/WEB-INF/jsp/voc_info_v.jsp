@@ -4,7 +4,7 @@
 <html lang="zh-en">
 <head>
 <meta charset="utf-8">
-<title>冰果英语：个人词汇信息</title>
+<title>个人词汇信息</title>
 
 <script src="/voc_info/res/js/jquery-1.8.2.min.js" type="text/javascript"></script>
 <script src="/voc_info/res/js/jquery.paginate.js" type="text/javascript"></script>
@@ -108,10 +108,10 @@ body {
 						td3.append(data.exers[i][0]);
 					}
 					var td4 = $("<td>"+data.exers[i][2]+"</td>");
-					var td5 = $("<td><a href='/voc_exe/index.php/voc_exe_c/index/"+userId+"/"+data.exers[i][1]+"'>重做</a>"+
+					var td5 = $("<td><a href='/voc_exer/showExpadding?userId="+userId+"&serialNumber="+data.exers[i][1]+"'>重做</a>"+
 							"</td>");
 					if(data.exers[i][0] != -1){
-						td5.append("<a style='margin-left:10px' href='/voc_exe/index.php/voc_exe_c/index/"+userId+"/"+data.exers[i][1]+"/1'>复习</a>");
+						td5.append("<a style='margin-left:10px' href='/voc_exer/showExpadding?userId="+userId+"&serialNumber="+data.exers[i][1]+"&isReview=1'>复习</a>");
 					}
 					
 					tr.append(td1);
@@ -162,7 +162,7 @@ body {
 			for(var i=0;i<data.ids.length;i++){
 				var tr = $("<tr class='warning'></tr>");
 				var td1 = $("<td>v-31-"+data.ids[i]+"</td>");
-				var td2 = $("<td><a href='/voc_exer/showNormal?userId="+userId+"&serialNumber=v-31-"+data.ids[i]+"'>做题</a></td>");
+				var td2 = $("<td><a href='/voc_exer/showExpadding?userId="+userId+"&serialNumber=v-31-"+data.ids[i]+"'>做题</a></td>");
 				tr.append(td1);
 				tr.append(td2);
 				$("#tbody_exer_"+(i%2)).append(tr);
@@ -187,7 +187,7 @@ body {
 
 	//转向词汇量测试
 	function goToVocTest(){
-		window.location = "/voc_test/index.php/voc_test_c/index/"+userId;
+		window.location = "/voc_test/showPage?userId="+userId;
 	}
 
 	//转向词汇练习
@@ -196,7 +196,7 @@ body {
 		var numExer = 1;
 		
 		$.getJSON("/voc_info/getRandomExers?numExer="+numExer,function(data){
-			window.location = "/voc_exer/showNormal?userId="+userId+"&serialNumber=v-31-"+data.ids[0];	
+			window.location = "/voc_exer/showExpadding?userId="+userId+"&serialNumber=v-31-"+data.ids[0];	
 		});
 	}
 </script>
@@ -211,12 +211,12 @@ body {
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 		<img src="/voc_info/res/images/bingo.png" style="float:left">
-			<a class="brand" href="###" >冰果英语</a>
+			<a class="brand" href="###" >英语</a>
 			<ul class="nav">
-				<li class="active"><a href="###">个人词汇信息</a></li>
-				<li><a id="a_vocbook" href="###" onclick="goToVocbook();">词汇本</a></li>
-				<li><a id="a_voc_test" href="###" onclick="goToVocTest();">词汇量测试</a></li>
-				<li><a id="a_voc_exe" href="###" onclick="goToVocExer();">词汇练习</a></li>
+				<li class="active"><a href="javascript:void(0);">个人词汇信息</a></li>
+				<li><a id="a_vocbook" href="javascript:void(0);" onclick="goToVocbook();">词汇本</a></li>
+				<li><a id="a_voc_test" href="javascript:void(0);" onclick="goToVocTest();">词汇量测试</a></li>
+				<li><a id="a_voc_exe" href="javascript:void(0);" onclick="goToVocExer();">词汇练习</a></li>
 			</ul>
 		</div>
 	</div>
