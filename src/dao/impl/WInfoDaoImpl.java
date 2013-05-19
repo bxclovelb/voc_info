@@ -49,12 +49,15 @@ public class WInfoDaoImpl implements WInfoDao{
 	}
 	@Override
 	public List<Integer> getRandomExers(int numExer) {
+		System.out.println("start.."+numExer);
 		Session session = sessionFactoryW.openSession();
 		String sql = "SELECT MAX(index_id) max_id FROM cached_voc_expanding";
 		SQLQuery query = session.createSQLQuery(sql);
 		List list = query.list();
 		
 		int maxId = Integer.parseInt(list.get(0).toString());
+		
+		System.out.println("maxId:"+maxId);
 		
 		List<Integer> randIds = new ArrayList<Integer>();
 		for(int i=0;i<numExer;i++){
@@ -77,7 +80,8 @@ public class WInfoDaoImpl implements WInfoDao{
 				}
 			}
 		}
-		
+		session.close();
+		System.out.println("end.."+numExer);
 		return randIds;
 	}
 	

@@ -3,7 +3,7 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-    <package name="vocbook" extends="json-default" namespace="/">
+    <package name="vocInfo" extends="json-default" namespace="/">
 		<action name="showInfo" class="action.InfoAction" 
 			method="showInfo">
 			<result type="dispatcher">
@@ -54,6 +54,17 @@
 				<param name="root">data</param>
 			</result>
 		</action>
+    </package>
+    
+    <package name="userLogin" extends="json-default" namespace="/">
+    	<action name="showLogin" class="action.LoginAction" method="showLogin">
+    		<result>WEB-INF/jsp/login_v.jsp</result>
+    	</action>
+    	<action name="login" class="action.LoginAction" method="login">
+    		<result type="json">
+				<param name="root">data</param>
+			</result>
+    	</action>
     </package>
     
 </struts>

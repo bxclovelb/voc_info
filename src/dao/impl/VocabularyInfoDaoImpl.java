@@ -79,6 +79,8 @@ public class VocabularyInfoDaoImpl implements VocabularyInfoDao{
 			query = session.createSQLQuery(sql);
 			query.executeUpdate();
 		}
+		
+		session.close();
 	}
 	
 

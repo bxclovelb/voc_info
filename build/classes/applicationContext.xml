@@ -55,19 +55,25 @@
 			</props>
 		</property>
 	</bean>
+	
 	<bean id="wInfoDao" class="dao.impl.WInfoDaoImpl">
 		<property name="sessionFactoryW" ref="sessionFactoryW"></property>
 	</bean>
-	
-	
 	<bean id="infoService" class="service.InfoService">
 		<property name="vocabularyInfoDao" ref="vocabularyInfoDao"></property>
 		<property name="wInfoDao" ref="wInfoDao"></property>
 	</bean>
-	
 	<bean id="infoAction" class="action.InfoAction">
 		<property name="infoService" ref="infoService"></property>
 	</bean> 
 	
-	
+	<bean id="loginDao" class="dao.impl.LoginDaoImpl">
+		<property name="sessionFactoryW" ref="sessionFactoryW"></property>
+	</bean>
+	<bean id="loginService" class="service.LoginService">
+		<property name="loginDao" ref="loginDao"></property>
+	</bean>
+	<bean id="loginAction" class="action.LoginAction">
+		<property name="loginService" ref="loginService"></property>
+	</bean> 
 </beans>

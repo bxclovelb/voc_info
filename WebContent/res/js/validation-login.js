@@ -1,0 +1,26 @@
+$(function(){
+	$("#form_login").validate({
+		rules:{
+			username:{
+				required:true
+			},
+			password:{
+				required:true
+			}
+		},
+		messages:{
+			username:{
+				required:"用户名和密码不能为空"
+			},
+			password:{
+				required:"用户名和密码不能为空"
+			}
+		},
+		errorPlacement:function(error,element){
+			//error.appendTo(element.parent().parent().next("tr").children().first());
+			$("#error_field").html("");
+			error.appendTo($("#error_field"));
+		}
+		
+	});
+});
