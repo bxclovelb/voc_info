@@ -5,7 +5,7 @@ $(function(){
 				required:true,
 				rangelength:[6,20],
 				remote:{
-					url:"/compositions/index.php/compositions_c/check_username",
+					url:"/voc_info/checkUsername",
 					type:"post",
 					dataType:"json",
 					data:{username:function(){return $("#username").val();}}
@@ -20,11 +20,12 @@ $(function(){
 				rangelength:[6,20],
 				equalTo:"#password"
 			},
-			name:{
+			nickname:{
 				required:true
 			},
-			school:{
-				required:true
+			email:{
+				required:true,
+				email:true
 			}
 		},
 		messages:{
@@ -42,11 +43,12 @@ $(function(){
 				rangelength:"<i></i>密码确认长度必须在6-20之间",
 				equalTo:"<i></i>两次输入的密码不一致"
 			},
-			name:{
-				required:"<i></i>姓名不能为空"
+			nickname:{
+				required:"<i></i>昵称不能为空"
 			},
-			school:{
-				required:"<i></i>学校不能为空"
+			email:{
+				required:"<i></i>邮箱不能为空",
+				email:"邮箱格式不正确！"
 			}
 		},
 		errorPlacement:function(error,element){

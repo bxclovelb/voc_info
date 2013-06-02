@@ -61,13 +61,14 @@ td {
 	<div class="container" style="margin-top: 10px">
 
 		<!--  header start -->
-		<div style="height:80px;margin-top: 40px;
-			background: url('/voc_info/res/images/logo-login.png') no-repeat">
+		<div style="height:80px;margin-top: 10px;">
+			<img src="/voc_info/res/images/logo.png"/>
+			<span style="height:80px;color:#5492e7;font-size:20pt;margin-left:20px">用户登录</span>
 		</div>
 		<!--  header end -->
 
-		<div id="div_body" class="row-fluid div-body" style="margin-top: 20px;height:500px;background-image: url(/voc_info/res/images/login_bg.jpg);border-radius:10px 10px">
-			<div id="div_login_body" style="background-color:white;width:300px;height:350px;position: relative;z-index:2;left:600px;top:75px;border-radius:10px 10px">
+		<div id="div_body" class="row-fluid div-body" style="margin-top: 20px;height:450px;background-image: url(/voc_info/res/images/login_bg.jpg);border-radius:10px 10px">
+			<div id="div_login_body" style="background-color:white;width:300px;height:350px;position: relative;z-index:2;left:600px;top:50px;border-radius:10px 10px">
 				<form id="form_login" style="padding-top:40px">
 					<table style="border-collapse: collapse;">
 						<tr>

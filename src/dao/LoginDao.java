@@ -6,4 +6,6 @@ public interface LoginDao{
 
 	public String getUserId(String username);
 
+	public String getNickname(String username);
+
 }

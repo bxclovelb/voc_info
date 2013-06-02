@@ -44,7 +44,7 @@ public class InfoService {
 	public Map getUserExers(String userId, int pageNo) {
 		Map<String,List> data = new HashMap<String,List>();
 		
-		List exers = wInfoDao.getUserExers(userId,pageNo,COUNT_PER_PAGE);
+		List<Object[]> exers = wInfoDao.getUserExers(userId,pageNo,COUNT_PER_PAGE);
 		
 		data.put("exers", exers);
 		
@@ -71,7 +71,9 @@ public class InfoService {
 	public void saveUserBand(String userId, int theBand) {
 		vocabularyInfoDao.saveUserBand(userId,theBand);
 	}
-	
+	public Object[] getUserInfo(String userId) {
+		return wInfoDao.getuserInfo(userId);
+	}
 	
 
 

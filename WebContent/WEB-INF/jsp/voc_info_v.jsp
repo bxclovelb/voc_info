@@ -28,13 +28,22 @@ body {
 
 <script type="text/javascript">
 	var userId = "";
+	var nickname = "";
+	var username = "";
+	var email = "";
 
 	$(function(){
-		//获得用户ID
+		//获得用户信息
 		userId = $("#hidden_user_id").val();
+		nickname = $("#hidden_nickname").val();
+		username = $("#hidden_username").val();
+		email = $("#hidden_email").val();
 
-		//获得基本信息
+		//显示基本信息
 		$("#span_user_id").html(userId);
+		$("#span_nickname").html(nickname);
+		$("#span_username").html(username);
+		$("#span_email").html(email);
 
 		//获得最近十个复习单词
 		getRecentTenWords();
@@ -107,7 +116,7 @@ body {
 					}else{
 						td3.append(data.exers[i][0]);
 					}
-					var td4 = $("<td>"+data.exers[i][2]+"</td>");
+					var td4 = $("<td>"+data.exers[i][2].replace("T"," ")+"</td>");
 					var td5 = $("<td><a href='/voc_exer/showExpadding?userId="+userId+"&serialNumber="+data.exers[i][1]+"'>重做</a>"+
 							"</td>");
 					if(data.exers[i][0] != -1){
@@ -199,6 +208,18 @@ body {
 			window.location = "/voc_exer/showExpadding?userId="+userId+"&serialNumber=v-31-"+data.ids[0];	
 		});
 	}
+	
+	function exit(){
+		$.getJSON("/voc_info/logout",
+			function(data){
+			if(!data.success){
+				alert("未知错误！");
+			}else{
+				alert("退出成功！");
+				window.location = "/voc_info/showLogin";
+			}
+		});
+	}
 </script>
 
 <!--[if IE 6]>
@@ -210,14 +231,17 @@ body {
 	<!-- navbar -->
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
-		<img src="/voc_info/res/images/bingo.png" style="float:left">
-			<a class="brand" href="###" >英语</a>
+			<img src="/voc_info/res/images/bingo.png" style="float:left">
+			<a class="brand" href="###" >英语词汇本</a>
 			<ul class="nav">
 				<li class="active"><a href="javascript:void(0);">个人词汇信息</a></li>
 				<li><a id="a_vocbook" href="javascript:void(0);" onclick="goToVocbook();">词汇本</a></li>
 				<li><a id="a_voc_test" href="javascript:void(0);" onclick="goToVocTest();">词汇量测试</a></li>
 				<li><a id="a_voc_exe" href="javascript:void(0);" onclick="goToVocExer();">词汇练习</a></li>
 			</ul>
+			<div style="float:right;margin:10px 10px">
+				<a href="javascript:void(0);" onclick="exit();">退出</a>
+			</div>
 		</div>
 	</div>
 	<!-- navbar end -->
@@ -239,7 +263,10 @@ body {
 		</div>
 		<div style="background-color: #dcf0f9;padding:10px 0 10px 10px">
 			<div style="font-size:13pt">
-				<strong>用户ID：</strong><span id="span_user_id"></span>
+				<strong>账号：</strong><span id="span_username"></span><br>
+				<strong>昵称：</strong><span id="span_nickname" style="color:orange"></span><br>
+				<strong>邮箱：</strong><span id="span_email"></span><br>
+				<strong>用户ID：</strong><span id="span_user_id" style="color:green"></span><br>
 			</div>
 		</div>
 		<!-- general info end -->
@@ -339,7 +366,10 @@ body {
 		
 	</div>
 	<form>
-		<input id="hidden_user_id" type="hidden" value='<s:property value="userId" />'> 
+		<input id="hidden_user_id" type="hidden" value='<s:property value="userId" />'>
+		<input id="hidden_nickname" type="hidden" value='<s:property value="nickname" />'>
+		<input id="hidden_username" type="hidden" value='<s:property value="username" />'>
+		<input id="hidden_email" type="hidden" value='<s:property value="email" />'> 
 	</form>
 
 	<script>

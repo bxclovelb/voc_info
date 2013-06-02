@@ -70,10 +70,20 @@
 	<bean id="loginDao" class="dao.impl.LoginDaoImpl">
 		<property name="sessionFactoryW" ref="sessionFactoryW"></property>
 	</bean>
-	<bean id="loginService" class="service.LoginService">
+	<bean id="loginLogoutService" class="service.LoginLogoutService">
 		<property name="loginDao" ref="loginDao"></property>
 	</bean>
-	<bean id="loginAction" class="action.LoginAction">
-		<property name="loginService" ref="loginService"></property>
+	<bean id="loginLogoutAction" class="action.LoginLogoutAction">
+		<property name="loginLogoutService" ref="loginLogoutService"></property>
+	</bean> 
+	
+	<bean id="registDao" class="dao.impl.RegistDaoImpl">
+		<property name="sessionFactoryW" ref="sessionFactoryW"></property>
+	</bean>
+	<bean id="registService" class="service.RegistService">
+		<property name="registDao" ref="registDao"></property>
+	</bean>
+	<bean id="registAction" class="action.RegistAction">
+		<property name="registService" ref="registService"></property>
 	</bean> 
 </beans>

@@ -57,12 +57,33 @@
     </package>
     
     <package name="userLogin" extends="json-default" namespace="/">
-    	<action name="showLogin" class="action.LoginAction" method="showLogin">
+    	<action name="showLogin" class="action.LoginLogoutAction" method="showLogin">
     		<result>WEB-INF/jsp/login_v.jsp</result>
     	</action>
-    	<action name="login" class="action.LoginAction" method="login">
+    	<action name="login" class="action.LoginLogoutAction" method="login">
     		<result type="json">
 				<param name="root">data</param>
+			</result>
+    	</action>
+    	<action name="logout" class="action.LoginLogoutAction" method="logout">
+    		<result type="json">
+				<param name="root">data</param>
+			</result>
+    	</action>
+    </package>
+    
+    <package name="userRegist" extends="json-default" namespace="/">
+    	<action name="showRegist" class="action.RegistAction" method="showRegist">
+    		<result>WEB-INF/jsp/regist_v.jsp</result>
+    	</action>
+    	<action name="saveUser" class="action.RegistAction" method="saveUser">
+    		<result type="json">
+				<param name="root">data</param>
+			</result>
+    	</action>
+    	<action name="checkUsername" class="action.RegistAction" method="checkUsername">
+    		<result type="json">
+				<param name="root">result</param>
 			</result>
     	</action>
     </package>

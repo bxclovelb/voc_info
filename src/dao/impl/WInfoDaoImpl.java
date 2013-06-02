@@ -15,7 +15,7 @@ public class WInfoDaoImpl implements WInfoDao{
 	private SessionFactory sessionFactoryW;
 	
 	@Override
-	public List<String> getUserExers(String userId, int pageNo , int countPerPage) {
+	public List<Object[]> getUserExers(String userId, int pageNo , int countPerPage) {
 		
 		Session session = sessionFactoryW.openSession();
 		String sql = "SELECT score,serial_number,date_time"
@@ -24,7 +24,7 @@ public class WInfoDaoImpl implements WInfoDao{
 				+countPerPage;
 		SQLQuery query = session.createSQLQuery(sql);
 		
-		List<String> exers = query.list();
+		List<Object[]> exers = query.list();
 		
 		session.close();
 		
@@ -84,7 +84,17 @@ public class WInfoDaoImpl implements WInfoDao{
 		System.out.println("end.."+numExer);
 		return randIds;
 	}
-	
+	@Override
+	public Object[] getuserInfo(String userId) {
+		Session session = sessionFactoryW.openSession();
+		String sql = "SELECT username,nickname,email FROM users WHERE user_id = '"+
+				userId+"'";
+		SQLQuery query = session.createSQLQuery(sql);
+		Object[] info = (Object[])query.list().get(0);
+		session.close();
+		
+		return info;
+	}
 	
 	
 
